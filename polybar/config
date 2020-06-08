@@ -1,0 +1,124 @@
+[bar/mac]
+modules-right =  i3-mode bluetooth sound wifi date search list
+modules-left = bar-icon bar-name file edit view go tools settings help
+modules-center = i3
+width = 100%
+height = 25
+bottom = false
+module-margin = 2
+background = #a9ffffff
+foreground = #000000
+padding-left = 5
+padding-right = 5
+font-0 = "SFNS Display:size=12;3" 
+font-1 = "SFNS Display:size=12:weight=bold;3"
+font-2 = "Font Awesome:size=16;4"
+font-3 = "Font Awesome:size=11;4"
+ray-position = right
+
+
+[bar/mac-dark]
+modules-right =  i3-mode bluetooth sound wifi date search list
+modules-left = bar-icon bar-name file edit view go tools settings help
+modules-center = i3
+width = 100%
+height = 25
+bottom = false
+module-margin = 2
+background = #a9000000
+foreground = #ffffff
+padding-left = 5
+padding-right = 5
+font-0 = "SFNS Display:size=12;3" 
+font-1 = "SFNS Display:size=12:weight=bold;3"
+font-2 = "Font Awesome:size=16;4"
+font-3 = "Font Awesome:size=11;4"
+#tray-position = left
+#wm-restack = i3
+
+[module/bar-icon]
+type = custom/text
+content = %{T3}%{A1:~/.config/polybar/scripts/menu.sh:}%{A}%{T3-}
+[module/bar-name]
+type = custom/script
+exec = echo %{T2}$(hostname)%{T-}
+
+[module/file]
+type = custom/text
+content = File
+
+[module/edit]
+type = custom/text
+content = Edit
+
+[module/view]
+type = custom/text
+content = View
+
+[module/go]
+type = custom/text
+content = Go
+
+[module/tools]
+type = custom/text
+content = Tools
+
+[module/settings]
+type = custom/text
+content = Settings
+
+[module/help]
+type = custom/text
+content = Help
+
+[module/date]
+type = internal/date
+date = %a %H:%M %p
+label-active-font = 2
+
+[module/i3-mode]
+type = internal/i3
+format = <label-mode> 
+label-mode-background = $background
+label-mode-foreground = $foreground
+
+[module/i3]
+type = internal/i3
+pin-workspaces = false
+strip-wsnumbers = true
+index-sort = false 
+enable-scroll = true
+format = <label-state>
+format-padding-right = 2
+#format = <label-state> <label-mode>
+label-unfocused-foreground = $foreground
+label-unfocused-padding = 1
+label-focused-foreground = #ffffff
+label-focused-background = #106dd8
+label-focused-padding = 1
+label-urgent-foreground = #ffffff
+label-urgent-background = #eb5850
+label-urgent-padding = 1
+
+[module/bluetooth]
+type = custom/text
+content = %{T4}
+
+[module/sound]
+type = custom/text
+content = %{T4}%{A1:mate-terminal -e alsamixer &:}%{A}
+
+[module/wifi]
+type = internal/network
+interface = wlp3s0
+interval = 3.0
+label-disconnected = %{T4}%{A1:nmtui:}%{A}
+label-connected = %{T4}%{A1:mate-terminal -e nmtui:}%{A}
+
+[module/search]
+type = custom/text
+content = %{T4}%{A1:rofi -show run:}%{A}
+
+[module/list]
+type = custom/text
+content = %{T4}%{T4-}
